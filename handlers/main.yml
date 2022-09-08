@@ -5,3 +5,5 @@
   ansible.builtin.command:
     cmd: ./install.sh
     chdir: /tmp/harbor
+  environment:
+    TERM: linux
