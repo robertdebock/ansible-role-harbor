@@ -1,0 +1,43 @@
+---
+image: "robertdebock/github-action-molecule:4.0.8"
+
+services:
+  - docker:dind
+
+variables:
+  DOCKER_HOST: "tcp://docker:2375"
+  PY_COLORS: 1
+
+molecule:
+  script:
+    - if [ -f tox.ini ] ; then tox ; fi
+    - if [ ! -f tox.ini ; then molecule test ; fi
+  rules:
+    - if: $CI_COMMIT_REF_NAME == "master"
+  retry: 1
+  parallel:
+    matrix:
+      - image: "alpine"
+        tag: "latest"
+      - image: "debian"
+        tag: "latest"
+      - image: "debian"
+        tag: "bookworm"
+      - image: "fedora"
+        tag: "35"
+      - image: "fedora"
+        tag: "latest"
+      - image: "fedora"
+        tag: "rawhide"
+      - image: "ubuntu"
+        tag: "latest"
+      - image: "ubuntu"
+        tag: "focal"
+      - image: "ubuntu"
+        tag: "bionic"
+
+galaxy:
+  script:
+    - ansible-galaxy role import --api-key ${GALAXY_API_KEY} ${CI_PROJECT_NAMESPACE} ${CI_PROJECT_NAME}
+  rules:
+    - if: $CI_COMMIT_TAG != null

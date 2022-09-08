@@ -1,0 +1,4 @@
+---
+# vars file for harbor
+
+harbor_archive: harbor-{{ harbor_installation_type }}-installer-v{{ harbor_version }}.tgz

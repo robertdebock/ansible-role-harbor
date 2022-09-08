@@ -1,0 +1,7 @@
+---
+# handlers file for harbor
+
+- name: Run installer
+  ansible.builtin.command:
+    cmd: install.sh
+    chdir: /tmp/harbor
