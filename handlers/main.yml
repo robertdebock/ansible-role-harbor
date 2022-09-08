@@ -3,5 +3,5 @@
 
 - name: Run installer
   ansible.builtin.command:
-    cmd: install.sh
+    cmd: ./install.sh
     chdir: /tmp/harbor
