@@ -11,6 +11,8 @@
     src: "{{ harbor_archive }}"
     dest: /tmp
     remote_src: yes
+  notify:
+    - Run installer
 
 - name: Place harbor.yml
   ansible.builtin.template:
