@@ -12,3 +12,4 @@
     - role: robertdebock.python_pip
     - role: robertdebock.docker
     - role: robertdebock.docker_compose
+    - role: robertdebock.selinux
