@@ -37,6 +37,8 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
     - role: robertdebock.epel
     - role: robertdebock.python_pip
     - role: robertdebock.docker
+    - role: robertdebock.docker_compose
+    - role: robertdebock.selinux
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -56,10 +58,14 @@ harbor_version: "2.6.0"
 harbor_installation_type: online
 
 # Specify the IP address or the fully qualified domain name (FQDN) of the target host on which to deploy Harbor.
-harbor_hostname: {{ ansible_hostname }}
+harbor_hostname: "{{ ansible_fqdn }}"
 
 # Set an initial password for the Harbor system administrator.
-harbor_admin_password: Harbor12345
+harbor_admin_password: "Harbor12345"
+
+# Fill harbor_external_url if you want to enable external proxy.
+# Use either harbor_hostname or harbor_external_url
+harbor_external_url: ""
 ```
 
 ## [Requirements](#requirements)
@@ -78,6 +84,8 @@ The following roles are used to prepare a system. You can prepare your system in
 |[robertdebock.epel](https://galaxy.ansible.com/robertdebock/epel)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-epel/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-epel/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock/ansible-role-epel/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-epel)|
 |[robertdebock.python_pip](https://galaxy.ansible.com/robertdebock/python_pip)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-python_pip/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-python_pip/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock/ansible-role-python_pip/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-python_pip)|
 |[robertdebock.docker](https://galaxy.ansible.com/robertdebock/docker)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-docker/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-docker/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock/ansible-role-docker/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-docker)|
+|[robertdebock.docker_compose](https://galaxy.ansible.com/robertdebock/docker_compose)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-docker_compose/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-docker_compose/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock/ansible-role-docker_compose/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-docker_compose)|
+|[robertdebock.selinux](https://galaxy.ansible.com/robertdebock/selinux)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-selinux/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-selinux/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock/ansible-role-selinux/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-selinux)|
 
 ## [Context](#context)
 
