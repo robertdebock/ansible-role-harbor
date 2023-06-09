@@ -5,6 +5,7 @@
     that:
       - harbor_version is defined
       - harbor_version is string
+      - harbor_version is not none
     quiet: yes
 
 - name: assert | Test if harbor_installation_type is set correctly
@@ -28,4 +29,5 @@
     that:
       - harbor_external_url is defined
       - harbor_external_url is string
+      - harbor_external_url is not none
     quiet: yes
