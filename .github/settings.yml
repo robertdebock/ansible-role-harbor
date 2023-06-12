@@ -5,4 +5,4 @@
 repository:
   description: Install and configure harbor on your system.
   homepage: https://robertdebock.nl/
-  topics: harbor, ansible, molecule, tox, playbook
+  topics: harbor, development, ansible, molecule, tox, playbook
