@@ -1,4 +1,4 @@
-# Ansible role [harbor](#harbor)
+# [Ansible role harbor](#harbor)
 
 Install and configure harbor on your system.
 
