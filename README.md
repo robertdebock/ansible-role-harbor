@@ -58,7 +58,7 @@ harbor_version: "2.6.0"
 harbor_installation_type: online
 
 # Specify the IP address or the fully qualified domain name (FQDN) of the target host on which to deploy Harbor.
-harbor_hostname: "{{ ansible_fqdn }}"
+harbor_hostname: "{{ ansible_facts['fqdn'] }}"
 
 # Set an initial password for the Harbor system administrator.
 harbor_admin_password: "Harbor12345"
