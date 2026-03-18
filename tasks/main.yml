@@ -35,5 +35,5 @@
     - Create selinux pp for harbor
     - Load selinux pp for harbor
   when:
-    - ansible_selinux.status is defined
-    - ansible_selinux.status == "enabled"
+    - ansible_facts['selinux'].status is defined
+    - ansible_facts['selinux'].status == "enabled"
