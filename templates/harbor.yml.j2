@@ -13,12 +13,14 @@ http:
   port: 80
 
 # https related config
-# https:
-#   # https port for harbor, default is 443
-#   port: 443
-#   # The path of cert and key files for nginx
-#   certificate: /your/certificate/path
-#   private_key: /your/private/key/path
+{% if harbor_https.certificate is defined and harbor_https.private_key is defined and harbor_https.certificate and harbor_https.private_key %}
+https:
+  # https port for harbor, default is 443
+  port: {{ harbor_https.port | default(443) }}
+  # The path of cert and key files for nginx
+  certificate: {{ harbor_https.certificate }}
+  private_key: {{ harbor_https.private_key }}
+{% endif %}
 
 # # Uncomment following will enable tls communication between all harbor components
 # internal_tls:
@@ -108,11 +110,20 @@ trivy:
 
 jobservice:
   # Maximum number of job workers in job service
-  max_job_workers: 10
+  max_job_workers: {{ harbor_jobservice_max_job_workers }}
+  # The jobLoggers backend name, only support "STD_OUTPUT", "FILE" and/or "DB"
+  job_loggers:
+{% for logger in harbor_jobservice_job_loggers %}
+    - {{ logger }}
+{% endfor %}
+  # The jobLogger sweeper duration (ignored if `jobLogger` is `stdout`)
+  logger_sweeper_duration: {{ harbor_jobservice_logger_sweeper_duration }} #days
 
 notification:
   # Maximum retry count for webhook job
-  webhook_job_max_retry: 10
+  webhook_job_max_retry: {{ harbor_notification_webhook_job_max_retry }}
+  # HTTP client timeout for webhook job
+  webhook_job_http_client_timeout: {{ harbor_notification_webhook_job_http_client_timeout }} #seconds
 
 chart:
   # Change the value of absolute_url to enabled can enable absolute url in chart
@@ -143,7 +154,7 @@ log:
   #   port: 5140
 
 #This attribute is for migrator to detect the version of the .cfg file, DO NOT MODIFY!
-_version: 2.6.0
+_version: {{ harbor_version }}
 
 # Uncomment external_database if using external database.
 # external_database:

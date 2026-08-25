@@ -52,7 +52,7 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # defaults file for harbor
 
 # What version would you like to install?
-harbor_version: "2.6.0"
+harbor_version: "2.14.0"
 
 # What type of installation would you like, either "online" or "offline".
 harbor_installation_type: online
@@ -66,6 +66,24 @@ harbor_admin_password: "Harbor12345"
 # Fill harbor_external_url if you want to enable external proxy.
 # Use either harbor_hostname or harbor_external_url
 harbor_external_url: ""
+
+# HTTPS configuration
+# To enable HTTPS, set the following variables.
+# harbor_https:
+#   port: 443
+#   certificate: "/path/to/your/certificate.crt"
+#   private_key: "/path/to/your/private.key"
+
+# JobService configuration
+harbor_jobservice_max_job_workers: 10
+harbor_jobservice_job_loggers:
+  - STD_OUTPUT
+  - FILE
+harbor_jobservice_logger_sweeper_duration: 1
+
+# Notification configuration
+harbor_notification_webhook_job_max_retry: 10
+harbor_notification_webhook_job_http_client_timeout: 3
 ```
 
 ## [Requirements](#requirements)
