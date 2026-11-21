@@ -1,0 +1,23 @@
+digraph PhiloDilemma {
+  label = "Robert de Bock" ;
+  overlap=false
+  {
+    "harbor" [fillcolor=yellow style=filled penwidth=3]
+    "robertdebock.bootstrap" [fillcolor=green style=filled]
+    "robertdebock.core_dependencies" [fillcolor=green style=filled]
+    "robertdebock.buildtools" [fillcolor=green style=filled]
+    "robertdebock.epel" [fillcolor=green style=filled]
+    "robertdebock.python_pip" [fillcolor=green style=filled]
+    "robertdebock.docker" [fillcolor=green style=filled]
+    "robertdebock.docker_compose" [fillcolor=green style=filled]
+    "robertdebock.selinux" [fillcolor=green style=filled]
+  }
+  "harbor" -> "robertdebock.bootstrap"
+  "harbor" -> "robertdebock.core_dependencies"
+  "harbor" -> "robertdebock.buildtools"
+  "harbor" -> "robertdebock.epel"
+  "harbor" -> "robertdebock.python_pip"
+  "harbor" -> "robertdebock.docker"
+  "harbor" -> "robertdebock.docker_compose"
+  "harbor" -> "robertdebock.selinux"
+}
